@@ -1,3 +1,8 @@
+using TellytCore.services.interfaces;
+using TellytCore.services;
+using TellytCore.Data.interfaces;
+using TellytCore.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 var dropFolder = configuration.GetValue<string>("DropFolder");
@@ -17,6 +22,12 @@ builder.Services.AddCors(options => {
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddScoped<ILogging, Logging>();
+builder.Services.AddScoped<IHelper, Helper>();
+builder.Services.AddScoped<IBaseDataAccess, BaseDataAccess>();
+builder.Services.AddScoped<IAssetService, AssetService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
