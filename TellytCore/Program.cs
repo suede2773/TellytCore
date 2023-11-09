@@ -6,7 +6,6 @@ using TellytCore.Data;
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 var dropFolder = configuration.GetValue<string>("DropFolder");
-var dropFolderUnc = configuration.GetValue<string>("DropFolderUNC");
 var logFileLocation = configuration.GetValue<string>("LogFileLocation");
 
 builder.Services.AddCors(options => {
@@ -23,6 +22,8 @@ builder.Services.AddCors(options => {
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSingleton(dropFolder);
+builder.Services.AddSingleton(logFileLocation);
 
 builder.Services.AddScoped<ILogging, Logging>();
 builder.Services.AddScoped<IHelper, Helper>();

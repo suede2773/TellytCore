@@ -3,13 +3,106 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TellytCore</title>
+    <title>@ViewData["Title"] - Tellyt</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TellytCore.styles.css" asp-append-version="true" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300,100' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Orbitron" />
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <script>
+
+    function get_browser_info() {
+        var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if (/trident/i.test(M[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return { name: 'IE', version: (tem[1] || '') };
+        }
+        if (M[1] === 'Chrome') {
+            tem = ua.match(/\bOPR\/(\d+)/)
+            if (tem != null) {
+                return { name: 'Opera', version: tem[1] };
+            }
+        }
+        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+            M.splice(1, 1, tem[1]);
+        }
+        return {
+            name: M[0],
+            version: M[1]
+        };
+    }
+
+    function removeCheckBoxError(checkBox) {
+        checkBox.removeClass("parsley-error");
+        checkBox.prev("ul").remove();
+    }
+
+    function raiseCheckBoxError(checkBox) {
+        if (!checkBox.prev().length) {
+            checkBox.before("<ul class=\"parsley-errors-list filled\"><li class=\"parsley-required\">You must agree to the terms of service.</li></ul>");
+        }
+    }
+
+    function raiseTextBoxErrorWithMessage(textBox, message) {
+        textBox.addClass("parsley-error");
+        //Only add this message if it doesn't exist
+        if (!textBox.next().length) {
+            textBox.after("<ul class=\"parsley-errors-list filled\"><li class=\"parsley-required\">" + message + "</li></ul>");
+        }
+    }
+
+    function raiseTextBoxError(textBox) {
+        textBox.addClass("parsley-error");
+        //Only add this message if it doesn't exist
+        if (!textBox.next().length) {
+            textBox.after("<ul class=\"parsley-errors-list filled\" style=\"padding-top: 0px; padding-bottom: 0px\"><li class=\"parsley-required\">This value is required.</li></ul>");
+        }
+    }
+
+    function removeTextBoxError(textBox) {
+        textBox.removeClass("parsley-error");
+        textBox.next("ul").remove();
+    }
+
+    function DeactivateMenuOptions() {
+        $("#liProfile").hide();
+        $("#liInterview").hide();
+        $("#liBioplate").hide();
+        $("#liBiosphere").hide();
+        $("#liTribute").hide();
+        $("#liAccount").hide();
+    }
+
+    function ActivateMenuOption(id) {
+        $("#" + id).show();
+    }
+
+    function SetSidebarHeight() {
+        var numVisibleMenuItems = $("#divSidebar").find("li:visible").length;
+        if (numVisibleMenuItems == 0) {
+            $("#divSidebar").hide();
+            return;
+        }
+        $("#divSidebar").show();
+        var height = numVisibleMenuItems * 115;
+        $("#divSidebar").css("height", height + "px");
+    }
+
+    $(function () {
+
+        $(".menuDashboard").click(function () {
+            var nextUrl = '@Url.Action("Index", "Dashboard")';
+            window.location.href = nextUrl;
+        });
+
+    });
+
+  </script>
 </head>
 <body>
-    <header>
+@*    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TellytCore</a>
@@ -29,21 +122,33 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    </header>*@
+  @RenderBody()
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - TellytCore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+
+  <footer id="divFooter">
+    <div class="row">
+      <div class="col-md-12">
+        <hr style="margin-left:10px; margin-right:10px;" />
+      </div>
+    </div>
+    <div class="row navbar1-footer">
+      <div class="col-md-12">
+        <span style="margin-left:10px; margin-right:10px;">&copy; @DateTime.Now.Year Tellyt Corporation</span>
+      </div>
+    </div>
+  </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+  <script>
+  $("#btnSignOut").click(function () {
+    var nextUrl = '@Url.Action("Logout", "Account")';
+    window.location.href = nextUrl;
+    return;
+  });
+  </script>
 </body>
 </html>
