@@ -341,7 +341,7 @@
         </div>
         </div>*@
 
-        <div class="container" id="selectJoinRow">
+@*        <div class="container" id="selectJoinRow">
           <div class="row">
             <div class="col-md-12">
               <h6>How would you like to join?</h6>
@@ -356,10 +356,10 @@
             </div>
             <div class="col-md-3"></div>
           </div>
-        </div>
+        </div>*@
         <!--</form>-->
 
-        <div class="container" id="createAccountRow" style="display: none">
+        <div class="container" id="createAccountRow">
           <div class="row">
             <h6>Create a new account</h6>
           </div>
@@ -453,9 +453,6 @@
     $("#btnJoinEmail").click(function () {
         $("#createAccountRow").show();
         $("#signupFooter").show();
-        if ($("#selectJoinRow").is(":visible")) {
-            $("#selectJoinRow").hide();
-        }
     });
 
     $("#btnSignIn").click(function () {
@@ -469,15 +466,19 @@
 
     $("#btnJoin").click(function () {
         ClearValidation();
-        if ($("#createAccountRow").is(":visible")) {
-            $("#createAccountRow").hide();
-        }
-        if ($("#selectProviderRow").is(":visible")) {
-            $("#selectProviderRow").hide();
-            $("#selectJoinRow").fadeIn(1000);
-        } else {
-            $("#selectJoinRow").fadeIn(1000);
-        }
+        $("#createAccountRow").show();
+        $("#signupFooter").show();
+
+        //ClearValidation();
+        //if ($("#createAccountRow").is(":visible")) {
+        //    $("#createAccountRow").hide();
+        //}
+        //if ($("#selectProviderRow").is(":visible")) {
+        //    $("#selectProviderRow").hide();
+        //    $("#selectJoinRow").fadeIn(1000);
+        //} else {
+        //    $("#selectJoinRow").fadeIn(1000);
+        //}
     });
 
     $("#btnCancel").click(function () {
@@ -493,9 +494,8 @@
     });
 
     function ResetSignUpModal() {
-        $("#selectJoinRow").show();
-        $("#createAccountRow").hide();
-        $("#signupFooter").hide();
+        $("#createAccountRow").show();
+        $("#signupFooter").show();
         $("#loadingSignUp").hide();
     }
 

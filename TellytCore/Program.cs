@@ -27,8 +27,11 @@ builder.Services.AddSingleton(logFileLocation);
 
 builder.Services.AddScoped<ILogging, Logging>();
 builder.Services.AddScoped<IHelper, Helper>();
+
 builder.Services.AddScoped<IBaseDataAccess, BaseDataAccess>();
 builder.Services.AddScoped<IAssetService, AssetService>();
+
+builder.Services.AddScoped<IUser, User>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<ForwardedHeadersOptions>(options =>

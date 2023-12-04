@@ -9,12 +9,10 @@ namespace TellytCore.Data
   public class BaseDataAccess : IBaseDataAccess
   {
     private readonly IConfiguration _configuration;
-    private readonly ILogging _logger;
     public string ConnectionString { get; set; }
     public BaseDataAccess(IConfiguration config, ILogging logger)
     {
       _configuration = config;
-      _logger = logger;
       this.ConnectionString = _configuration.GetConnectionString("Stream");
     }
 
@@ -81,8 +79,6 @@ namespace TellytCore.Data
       }
       catch (Exception ex)
       {
-        _logger.WriteLog("error", procedureName);
-        _logger.WriteLog("error", ex.Message);
         throw;
       }
     }
@@ -115,8 +111,6 @@ namespace TellytCore.Data
       }
       catch (Exception ex)
       {
-        _logger.WriteLog("error", procedureName);
-        _logger.WriteLog("error", ex.Message);
         throw;
       }
 
@@ -143,8 +137,6 @@ namespace TellytCore.Data
       }
       catch (Exception ex)
       {
-        _logger.WriteLog("error", procedureName);
-        _logger.WriteLog("error", ex.Message);
         throw;
       }
 
@@ -187,8 +179,6 @@ namespace TellytCore.Data
       }
       catch (Exception ex)
       {
-        _logger.WriteLog("error", queryText);
-        _logger.WriteLog("error", ex.Message);
         throw;
       }
 
@@ -214,8 +204,6 @@ namespace TellytCore.Data
       }
       catch (Exception ex)
       {
-        _logger.WriteLog("error", procedureName);
-        _logger.WriteLog("error", ex.Message);
         throw;
       }
 
