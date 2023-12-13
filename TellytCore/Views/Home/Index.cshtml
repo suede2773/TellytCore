@@ -312,143 +312,15 @@
   </div>
 </div>
 
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        @*<div class="container pt-3">
-        <div class="row" id="selectProviderRow">
-        <div class="row">
-        <div class="col-md-12">
-        <h1>How would you like to log in?</h1>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-        <button type="button" class="btn btn-danger btn-lg btn-block">Google</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
-        <button type="button" class="btn btn-info btn-lg btn-block" id="btnSignInEmail">Email</button>
-        </div>
-        <div class="col-md-3"></div>
-        </div>
-        </div>
-        </div>*@
 
-@*        <div class="container" id="selectJoinRow">
-          <div class="row">
-            <div class="col-md-12">
-              <h6>How would you like to join?</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-              <button type="button" class="btn btn-danger btn-lg btn-block" id="btnJoinGoogle">Google</button>
-              <button type="button" class="btn btn-primary btn-lg btn-block" id="btnJoinFacebook">Facebook</button>
-              <button type="button" class="btn btn-info btn-lg btn-block" id="btnJoinEmail">Email</button>
-            </div>
-            <div class="col-md-3"></div>
-          </div>
-        </div>*@
-        <!--</form>-->
 
-        <div class="container" id="createAccountRow">
-          <div class="row">
-            <h6>Create a new account</h6>
-          </div>
-          <div class="form-group row">
-            <div class="col-12 col-sm-6">
-              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
 
-            </div>
-            <div class="col-12 col-sm-6">
-              <input class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-12">
 
-              <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address">
 
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-12">
-
-              <input type="text" class="form-control" id="emailAddress2" name="emailAddress2" placeholder="Re-enter Email Address">
-
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-12">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Your Password">
-
-            </div>
-          </div>
-
-          @*<div class="form-group row">
-          <div class="col-md-5 col-12 pt-1">
-          <button id="btnCancel" class="btn btn-primary btn-block">Cancel</button>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5 col-12 pt-1">
-          <button id="btnCreateAccountEmail" class="btn btn-primary btn-block">
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="loadingSignIn"></span>
-          Go!
-          </button>
-          </div>
-          </div>*@
-
-          @*<div class="form-group">
-          <div class="col-sm-12 clearfix">
-          <button type="button" class="btn btn-primary btn-lg pull-right" id="btnCreateAccountEmail">Go!</button>
-
-          </div>
-          </div>*@
-        </div>
-        <div id="errorRow" style="display:none" class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <span id="errorMessage" style="color: darkred; font-size: 1.1em; font-weight:bold"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer" id="signupFooter">
-        <button type="button" id="btnCancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" id="btnCreateAccountEmail" class="btn btn-primary">
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="loadingSignUp"></span>
-          Sign Up
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 @section Scripts
   {
   <script>
-    $("#btnJoinFacebook").click(function () {
-        //Just redirect to the interview page, which will force them to log in
-        var nextUrl = '@Url.Action("Index", "Dashboard")';
-        window.location.href = nextUrl;
-        return;
-    });
-
-    $("#btnJoinGoogle").click(function () {
-        //Just redirect to the interview page, which will force them to log in
-        var nextUrl = '@Url.Action("Index", "Dashboard")';
-        window.location.href = nextUrl;
-        return;
-    });
 
     $("#btnJoinEmail").click(function () {
         $("#createAccountRow").show();
@@ -469,16 +341,6 @@
         $("#createAccountRow").show();
         $("#signupFooter").show();
 
-        //ClearValidation();
-        //if ($("#createAccountRow").is(":visible")) {
-        //    $("#createAccountRow").hide();
-        //}
-        //if ($("#selectProviderRow").is(":visible")) {
-        //    $("#selectProviderRow").hide();
-        //    $("#selectJoinRow").fadeIn(1000);
-        //} else {
-        //    $("#selectJoinRow").fadeIn(1000);
-        //}
     });
 
     $("#btnCancel").click(function () {
@@ -494,6 +356,11 @@
     });
 
     function ResetSignUpModal() {
+        $("#firstName").val("");
+        $("#lastName").val("");
+        $("#emailAddress").val("");
+        $("#emailAddress2").val("");
+        $("#password").val("");
         $("#createAccountRow").show();
         $("#signupFooter").show();
         $("#loadingSignUp").hide();
@@ -568,22 +435,19 @@
 
         $(".signupbutton").click(function () {
             ResetSignUpModal();
-            //Place a modal form for local sign ups. If they choose FB or Google, just send them on to the dashboard and it will require a sign in
             $('#signupModal').modal('show');
-    @*var signupUrl = '@Url.Content("~/Sales")';
-              window.location.href = signupUrl;*@
           });
 
         $(".loginbutton").click(function () {
-            var nextUrl = '@Url.Action("Index", "Dashboard")';
-            window.location.href = nextUrl;
+          ResetLoginModal();
+            const loginModal = bootstrap.Modal.getOrCreateInstance($('#loginModal'));
+            loginModal.show();
         });
 
         $(".startinterviewbutton").click(function () {
             var signupUrl = '@Url.Content("~/Sales")';
             window.location.href = signupUrl;
         });
-
 
     });
 
