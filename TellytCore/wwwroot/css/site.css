@@ -403,17 +403,17 @@ section.dashboard_main {
   line-height: 27px;
 }
 
-.homebackground1 {
+/*.homebackground1 {*/
   /* The image used */
-  background-image: url("../images/HomeBackground1.png");
+  /*background-image: url("../images/HomeBackground1.png");*/
   /* Full height */
-  height: 100%;
-  min-height: 606px;
+  /*height: 100%;
+  min-height: 606px;*/
   /* Center and scale the image nicely */
-  background-position: center;
+  /*background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+}*/
 
 .signup-holder {
   position: relative;
@@ -506,7 +506,7 @@ section.dashboard_main {
 }
 
 .joinnow {
-  height: 100px;
+  /*height: 100px;*/
   color: #666666;
   font-size: 42px;
   margin-top: 30px;
